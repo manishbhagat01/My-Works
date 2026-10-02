@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+.env
+.env.*
+.DS_Store
+*.log
+.railway/

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitSync — Fitness With AI</title><link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span>⚡</span> FitSync</div>
+    <p class="tag">Fitness With AI</p>
+    <nav>
+      <button class="nav active" data-section="dashboard">⌂ Dashboard</button>
+      <button class="nav" data-section="workout">🏋 Workout</button>
+      <button class="nav" data-section="activity">➕ Log Activity</button>
+      <button class="nav" data-section="profile">👤 Profile</button>
+      <button class="nav" data-section="coach">🤖 AI Coach</button>
+    </nav>
+    <button id="logout" class="logout">Log out</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">YOUR ADAPTIVE FITNESS JOURNEY</p><h1 id="hello">Welcome back</h1></div>
+      <div class="avatar" id="avatar">F</div>
+    </header>
+
+    <section id="dashboard" class="section active">
+      <div class="hero-card">
+        <div><p class="eyebrow">TODAY'S PLAN</p><h2 id="planTitle">Loading...</h2><p id="planMeta"></p><button class="primary" onclick="showSection('workout')">Start workout →</button></div>
+        <div class="score"><div class="score-ring"><span id="score">0</span></div><p>Fitness Score</p><small id="scoreChange">Building your baseline</small></div>
+      </div>
+      <div class="cards">
+        <div class="stat"><span>🔥</span><b id="streak">0</b><small>Day streak</small></div>
+        <div class="stat"><span>⚡</span><b id="xp">0</b><small>XP</small></div>
+        <div class="stat"><span>⏱</span><b id="minutes">0</b><small>Weekly minutes</small></div>
+        <div class="stat"><span>✓</span><b id="workouts">0</b><small>Weekly workouts</small></div>
+      </div>
+      <div class="grid2">
+        <div class="panel"><h3>Weekly Activity</h3><canvas id="activityChart"></canvas></div>
+        <div class="panel"><h3>FitSync Insight</h3><div class="insight" id="insight">Loading...</div></div>
+      </div>
+    </section>
+
+    <section id="workout" class="section">
+      <div class="section-head"><div><p class="eyebrow">PLAN</p><h2>Today's adaptive workout</h2></div><button class="primary" onclick="completeWorkout()">Complete session</button></div>
+      <div id="workoutBox" class="workout-box"></div>
+    </section>
+
+    <section id="activity" class="section">
+      <div class="section-head"><div><p class="eyebrow">ACTIVITY</p><h2>Log an activity</h2></div></div>
+      <form id="activityForm" class="panel form">
+        <label>Activity type<select id="type"><option>Walking</option><option>Running</option><option>Cycling</option><option>Strength training</option><option>Yoga</option><option>Mobility</option><option>Sports</option><option>Home workout</option><option>Gym workout</option></select></label>
+        <label>Duration (minutes)<input id="duration" type="number" min="1" value="20" required></label>
+        <label>Distance (km)<input id="distance" type="number" min="0" step="0.1" value="0"></label>
+        <label>Difficulty (1–10)<input id="difficulty" type="number" min="1" max="10" value="5"></label>
+        <label>Energy (1–10)<input id="energy" type="number" min="1" max="10" value="7"></label>
+        <label>Sleep quality (1–10)<input id="sleep" type="number" min="1" max="10" value="7"></label>
+        <label>Soreness (1–10)<input id="soreness" type="number" min="1" max="10" value="2"></label>
+        <button class="primary" type="submit">Save activity</button>
+        <p id="activityMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <section id="profile" class="section">
+      <div class="section-head"><div><p class="eyebrow">PROFILE</p><h2>Your fitness profile</h2></div></div>
+      <form id="profileForm" class="panel form">
+        <label>Name<input id="name"></label><label>Age<input id="age" type="number"></label>
+        <label>Height (cm)<input id="heightCm" type="number"></label><label>Weight (kg)<input id="weightKg" type="number" step="0.1"></label>
+        <label>Experience<select id="experience"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+        <label>Activity level<select id="activityLevel"><option>Low</option><option>Moderate</option><option>High</option></select></label>
+        <label>Available time (minutes)<input id="availableMinutes" type="number" min="5" value="20"></label>
+        <label>Equipment<input id="equipment" placeholder="None, dumbbells, gym..."></label>
+        <label>Preferred workout types<input id="workoutTypes" placeholder="Strength, cardio, mobility..."></label>
+        <label>Primary goal<select id="goal"><option>Improve general fitness</option><option>Build strength</option><option>Improve endurance</option><option>Increase mobility</option><option>Improve flexibility</option><option>Improve consistency</option><option>Increase daily activity</option><option>Improve sports performance</option><option>Maintain an active lifestyle</option></select></label>
+        <button class="primary">Save profile</button><p id="profileMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <section id="coach" class="section">
+      <div class="section-head"><div><p class="eyebrow">AI COACH</p><h2>Ask FitSync</h2></div></div>
+      <div class="coach panel">
+        <div id="chat" class="chat"><div class="bubble bot">Hi! I can help you choose a workout, restart after a missed session, or understand your Fitness Score.</div></div>
+        <div class="chat-input"><input id="question" placeholder="e.g. I only have 15 minutes today..."><button class="primary" onclick="askCoach()">Send</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/js/app.js"></script>
+</body></html>
